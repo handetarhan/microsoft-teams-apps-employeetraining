@@ -146,7 +146,7 @@
     <comment>Cancellation card title</comment>
   </data>
   <data name="Category" xml:space="preserve">
-    <value>Category</value>
+    <value>Kategori</value>
     <comment>The value for category</comment>
   </data>
   <data name="CloseRegistrationCardButton" xml:space="preserve">
