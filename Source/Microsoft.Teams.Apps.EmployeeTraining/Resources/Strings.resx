@@ -314,7 +314,7 @@
     <comment>Welcome card title for personal and team scope</comment>
   </data>
   <data name="WelcomeCardPersonalContentFooter" xml:space="preserve">
-    <value>Ready to get started? Select {0} below:</value>
+    <value>Daha fazlası için: Select {0} below:</value>
     <comment>Welcome card footer message for personal scope</comment>
   </data>
   <data name="EventUpdatedCardTitle" xml:space="preserve">
