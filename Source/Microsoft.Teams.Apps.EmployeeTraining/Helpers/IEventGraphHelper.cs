@@ -28,6 +28,13 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers
         Task<Event> UpdateEventAsync(EventEntity eventEntity);
 
         /// <summary>
+        /// Update teams event attendees. 29.09.2021 Smarttek
+        /// </summary>
+        /// <param name="eventEntity">Event details from user for which event needs to be updated.</param>
+        /// <returns>Updated event details.</returns>
+        Task<Event> UpdateEventAttendeesAsync(EventEntity eventEntity);
+
+        /// <summary>
         /// Cancel calendar event.
         /// </summary>
         /// <param name="eventGraphId">Event Id received from Graph.</param>

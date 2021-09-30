@@ -141,6 +141,11 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers
                 AllowNewTimeProposals = false,
                 IsOnlineMeeting = eventEntity.Type == (int)EventType.Teams,
                 OnlineMeetingProvider = eventEntity.Type == (int)EventType.Teams ? OnlineMeetingProviderType.TeamsForBusiness : OnlineMeetingProviderType.Unknown,
+
+                // 30.09.2021 smarttek
+                ResponseRequested = false,
+
+                // endof 30.09.2021 smarttek
             };
 
             teamsEvent.Start = new DateTimeTimeZone
@@ -213,6 +218,25 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers
                 // Create recurring event.
                 teamsEvent = this.GetRecurringEventTemplate(teamsEvent, eventEntity);
             }
+
+            return await this.applicationGraphClient.Users[eventEntity.CreatedBy].Events[eventEntity.GraphEventId].Request()
+                .Header("Prefer", $"outlook.timezone=\"{TimeZoneInfo.Utc.Id}\"").UpdateAsync(teamsEvent);
+        }
+
+        /// <summary>
+        /// Update teams event attendees. 29.09.2021 Smarttek
+        /// </summary>
+        /// <param name="eventEntity">Event details from user for which event needs to be updated.</param>
+        /// <returns>Updated event details.</returns>
+        public async Task<Event> UpdateEventAttendeesAsync(EventEntity eventEntity)
+        {
+            eventEntity = eventEntity ??
+                throw new ArgumentNullException(nameof(eventEntity), "Event details cannot be null");
+
+            var teamsEvent = new Event
+            {
+                Attendees = await this.GetEventAttendeesTemplateAsync(eventEntity),
+            };
 
             return await this.applicationGraphClient.Users[eventEntity.CreatedBy].Events[eventEntity.GraphEventId].Request()
                 .Header("Prefer", $"outlook.timezone=\"{TimeZoneInfo.Utc.Id}\"").UpdateAsync(teamsEvent);

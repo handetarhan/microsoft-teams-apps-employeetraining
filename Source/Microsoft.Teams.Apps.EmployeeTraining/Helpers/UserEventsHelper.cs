@@ -260,8 +260,11 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers
 
                 if (isRegisteredSuccessfully)
                 {
-                    var isGraphEventUpdated = await this.UpdateGraphEvent(eventDetails);
+                    // 29.09.2021 smarttek
+                    // var isGraphEventUpdated = await this.UpdateGraphEvent(eventDetails);
+                    var isGraphEventUpdated = await this.UpdateGraphEventAttendees(eventDetails);
 
+                    // endof 29.09.2021 smarttek
                     if (isGraphEventUpdated)
                     {
                         await this.UpdateEventNotificationInTeam(eventDetails);
@@ -345,8 +348,11 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers
 
                 if (isRegisteredSuccessfully)
                 {
-                    var isGraphEventUpdated = await this.UpdateGraphEvent(eventDetails);
+                    // 29.09.2021 smarttek
+                    // var isGraphEventUpdated = await this.UpdateGraphEvent(eventDetails);
+                    var isGraphEventUpdated = await this.UpdateGraphEventAttendees(eventDetails);
 
+                    // endof 29.09.2021 smarttek
                     if (isGraphEventUpdated)
                     {
                         await this.UpdateEventNotificationInTeam(eventDetails);
@@ -409,6 +415,24 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers
 
             // Create event using MS Graph.
             var graphEventResult = await this.eventGraphHelper.UpdateEventAsync(eventToUpsert);
+
+            if (graphEventResult == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Update graph event attendees 29.09.2021 smarttek
+        /// </summary>
+        /// <param name="eventToUpdate">The event to be updated</param>
+        /// <returns>Returns boolean indicating whether update operation is successful</returns>
+        private async Task<bool> UpdateGraphEventAttendees(EventEntity eventToUpdate)
+        {
+            // Update event using MS Graph.
+            var graphEventResult = await this.eventGraphHelper.UpdateEventAttendeesAsync(eventToUpdate);
 
             if (graphEventResult == null)
             {
