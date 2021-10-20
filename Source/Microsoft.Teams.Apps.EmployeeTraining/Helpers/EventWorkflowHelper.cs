@@ -252,6 +252,11 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers
                     await this.SendAutoregisteredNotificationAsync(eventToUpsert, eventToUpsert.AutoRegisteredAttendees.Split(";").ToList());
                 }
 
+                if (!eventToUpsert.IsAutoRegister)
+                {
+                    await this.SendEventCreationNotificationAllUsers(eventToUpsert, createdByName);
+                }
+
                 // Run indexer on demand so that record will be available for search service.
                 await this.eventSearchService.RunIndexerOnDemandAsync();
             }
@@ -735,6 +740,31 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers
 
                     await this.notificationHelper.SendNotificationToUsersAsync(registeredAttendees, notificationCard);
                 }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Sends notification to all users after event in created
+        /// </summary>
+        /// <param name="eventDetails">Event details.</param>
+        /// <param name="createdByName">Name of person who created event.</param>
+        /// <returns>Returns true if notification sent successfully. Else returns false.</returns>
+        private async Task<bool> SendEventCreationNotificationAllUsers(EventEntity eventDetails, string createdByName)
+        {
+            if (eventDetails == null)
+            {
+                return false;
+            }
+
+            var allUsers = await this.userConfigurationRepository.GetAllUserConfigurationsAsync();
+
+            if (!allUsers.IsNullOrEmpty())
+            {
+                var notificationCard = EventDetailsCard.GetEventCreationCardForUser(this.botOptions.Value.AppBaseUri, this.localizer, eventDetails, createdByName);
+
+                await this.notificationHelper.SendNotificationToUsersAsync(allUsers, notificationCard);
             }
 
             return true;

@@ -82,6 +82,34 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers
             return groupMembers;
         }
 
+        // 19.10.2021 smarttek
+
+        /// <summary>
+        /// Get all users.
+        /// </summary>
+        /// <returns>A task that returns collection of users.</returns>
+        public async Task<IEnumerable<DirectoryObject>> GetAllUsersAsync()
+        {
+            var result = await this.delegatedGraphClient.Users
+                .Request().GetAsync();
+
+            var users = new List<DirectoryObject>();
+            while (result?.Count > 0)
+            {
+                users.AddRange(result);
+                if (result.NextPageRequest != null)
+                {
+                    result = await result.NextPageRequest.GetAsync();
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return users;
+        }
+
         /// <summary>
         /// Get top 10 groups according to user search query.
         /// </summary>

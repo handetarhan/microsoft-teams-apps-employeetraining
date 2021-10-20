@@ -17,6 +17,7 @@ import CreateEventWrapper from "../components/create-event/create-event-wrapper"
 import ManageCategories from "../components/manage-categories/manage-categories";
 import CloseOrCancelEvent from "../components/manage-events/close-cancel-event";
 import DeleteDraftEvent from "../components/manage-events/delete-draft";
+import DeleteEvent from "../components/manage-events/delete-event"; //12.10.2021 smarttek
 import SignInPage from "../components/signin/signin";
 import SignInSimpleStart from "../components/signin/signin-start";
 import SignInSimpleEnd from "../components/signin/signin-end";
@@ -39,6 +40,7 @@ export const AppRoute: React.FunctionComponent<{}> = () => {
                     <Route exact path="/signin-simple-start" component={SignInSimpleStart} />
                     <Route exact path="/signin-simple-end" component={SignInSimpleEnd} />
                     <Route exact path="/error" component={ErrorPage} />
+                    <Route exact path="/delete-event" component={DeleteEvent} />
                 </Switch>
             </BrowserRouter>
         </React.Suspense>

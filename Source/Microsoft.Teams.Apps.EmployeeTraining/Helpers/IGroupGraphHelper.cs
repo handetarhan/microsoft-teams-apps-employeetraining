@@ -26,5 +26,13 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers
         /// <param name="searchText">Search query entered by user.</param>
         /// <returns>List of users.</returns>
         Task<List<Group>> SearchGroupsAsync(string searchText);
+
+        // 19.10.2021 smarttek
+
+        /// <summary>
+        /// Get all users.
+        /// </summary>
+        /// <returns>List of users.</returns>
+        Task<IEnumerable<DirectoryObject>> GetAllUsersAsync();
     }
 }

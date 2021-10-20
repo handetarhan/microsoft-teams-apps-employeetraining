@@ -26,5 +26,13 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Repositories
         /// <param name="userConfigurationDetails">The user configuration details.</param>
         /// <returns>Returns true if configuration details inserted or updated successfully. Else returns false.</returns>
         Task<bool> UpsertUserConfigurationsAsync(User userConfigurationDetails);
+
+        // 19.10.2021 smarttek
+
+        /// <summary>
+        /// Gets all users' configuration details.
+        /// </summary>
+        /// <returns>Returns users' configuration details.</returns>
+        Task<IEnumerable<User>> GetAllUserConfigurationsAsync();
     }
 }

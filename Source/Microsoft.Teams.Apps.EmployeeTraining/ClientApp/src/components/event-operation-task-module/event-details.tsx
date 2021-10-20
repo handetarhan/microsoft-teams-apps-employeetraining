@@ -177,8 +177,10 @@ const EventDetails: React.FunctionComponent<IEventDetailsProps> = props => {
     }
 
     /** Renders the attendee URL for live event */
+    // 20.10.2021 smarttek
     const renderAttendeeURL = () => {
-        if (props.eventDetails?.type === EventType.LiveEvent) {
+        //if (props.eventDetails?.type === EventType.LiveEvent) {
+        if (props.eventDetails?.meetingLink) {
             return (
                 <Flex design={{ marginTop: "2.67rem" }} vAlign="center" hAlign="start" column>
                     <Text content={localize("liveEventUrlStep1")} weight="semibold" />

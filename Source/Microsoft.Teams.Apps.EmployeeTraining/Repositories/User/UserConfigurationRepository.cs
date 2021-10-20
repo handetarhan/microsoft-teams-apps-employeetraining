@@ -53,6 +53,18 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Repositories
             return await this.GetWithFilterAsync(partitionKeyFilter);
         }
 
+        // 19.10.2021 smarttek
+
+        /// <summary>
+        /// Gets all users' configuration details.
+        /// </summary>
+        /// <returns>Returns users' configuration details.</returns>
+        public async Task<IEnumerable<User>> GetAllUserConfigurationsAsync()
+        {
+            await this.EnsureInitializedAsync();
+            return await this.GetAllNoFilterAsync();
+        }
+
         /// <summary>
         /// Insert or update a new user configuration details when user installs a Bot.
         /// </summary>

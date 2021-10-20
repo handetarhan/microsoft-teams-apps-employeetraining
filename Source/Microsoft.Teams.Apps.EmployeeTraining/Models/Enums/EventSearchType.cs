@@ -59,6 +59,13 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Models.Enums
         /// </summary>
         DayBeforeReminder,
 
+        // 19.10.2021 smarttek
+
+        /// <summary>
+        /// Search events to send reminder in the morning it starts
+        /// </summary>
+        MorningReminder,
+
         /// <summary>
         /// Search events to send reminder a week before it starts
         /// </summary>

@@ -401,7 +401,7 @@ class ManageEvents extends React.Component<IManageEventsProps, IManageEventsStat
      */
     onDeleteDraftEvent = (eventId: string, eventName: string) => {
         this.props.microsoftTeams.tasks.startTask({
-            title: this.localize("deleteEvent"),
+            title: this.localize("deleteDraft"),
             height: 200,
             width: 400,
             url: `${window.location.origin}/delete-draft?eventId=${eventId}&teamId=${this.teamId}`
@@ -414,6 +414,35 @@ class ManageEvents extends React.Component<IManageEventsProps, IManageEventsStat
 
                 this.setState((prevState: IManageEventsState) => ({
                     draftEvents: updatedDraftEvents,
+                    notification: {
+                        id: prevState.notification.id + 1,
+                        message: this.localize("deleteDraftEvent"),
+                        type: ActivityStatus.Success
+                    }
+                }));
+            }
+        });
+    }
+
+    /** 12.10.2021 smarttek
+     * The event handler called when deleting event
+     * @param eventId The draft ID that needs to be deleted
+     */
+    onDeleteEvent = (eventId: string, eventName: string) => {
+        this.props.microsoftTeams.tasks.startTask({
+            title: this.localize("deleteEvent"),
+            height: 200,
+            width: 400,
+            url: `${window.location.origin}/delete-event?eventId=${eventId}&teamId=${this.teamId}`
+        }, (error: any, result: any) => {
+            if (result) {
+                let completedEvents = this.state.completedEvents ? [...this.state.completedEvents] : [];
+                let updatedCompletedEvents: Array<IEvent> = completedEvents.filter((event: IEvent) => event.eventId !== eventId);
+
+                this.completedEventsCount -= 1;
+
+                this.setState((prevState: IManageEventsState) => ({
+                    completedEvents: updatedCompletedEvents,
                     notification: {
                         id: prevState.notification.id + 1,
                         message: this.localize("deleteDraftEvent"),
@@ -666,7 +695,8 @@ class ManageEvents extends React.Component<IManageEventsProps, IManageEventsStat
                                     </Flex>
                                     <Flex.Item push>
                                         {
-                                            event.status === EventStatus.Cancelled ? <Button disabled text iconOnly icon={<MoreIcon />} /> :
+                                            // 12.10.2021 smarttek
+                                            //event.status === EventStatus.Cancelled ? <Button disabled text iconOnly icon={<MoreIcon />} /> :
                                                 <ManageEventsMenu
                                                     eventDetails={event}
                                                     onCancelEvent={this.onCancelEvent}
@@ -675,6 +705,7 @@ class ManageEvents extends React.Component<IManageEventsProps, IManageEventsStat
                                                     onExportDetails={this.onExportDetails}
                                                     onSendReminder={this.onSendReminder}
                                                     onDeleteDraftEvent={this.onDeleteDraftEvent}
+                                                    onDeleteEvent={this.onDeleteEvent}
                                                 />
                                         }
                                     </Flex.Item>
@@ -723,7 +754,10 @@ class ManageEvents extends React.Component<IManageEventsProps, IManageEventsStat
                                 design: { minWidth: "15vw", maxWidth: "15vw" }
                             },
                             {
-                                content: event.status === EventStatus.Cancelled ? <Button disabled text iconOnly icon={<MoreIcon />} /> :
+
+                                    // 12.10.2021 smarttek
+                                content:
+                                    //event.status === EventStatus.Cancelled ? <Button disabled text iconOnly icon={<MoreIcon />} /> :
                                     <ManageEventsMenu
                                         eventDetails={event}
                                         onCancelEvent={this.onCancelEvent}
@@ -732,6 +766,7 @@ class ManageEvents extends React.Component<IManageEventsProps, IManageEventsStat
                                         onExportDetails={this.onExportDetails}
                                         onSendReminder={this.onSendReminder}
                                         onDeleteDraftEvent={this.onDeleteDraftEvent}
+                                        onDeleteEvent={this.onDeleteEvent}
                                     />,
                                 design: { minWidth: "5vw", maxWidth: "5vw" }
                             }

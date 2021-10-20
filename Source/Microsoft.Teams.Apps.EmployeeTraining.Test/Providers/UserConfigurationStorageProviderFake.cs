@@ -62,6 +62,18 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Tests.Providers
         }
 
         /// <summary>
+        /// Gets all users' configuration details
+        /// </summary>
+        /// <param name="userAADObjectIds">The user IDs of which configuration details need to get</param>
+        /// <returns>Returns users' configuration details</returns>
+        public async Task<IEnumerable<User>> GetAllUserConfigurationsAsync()
+        {
+            List<User> matchedUsers = new List<User>();
+            matchedUsers = this.users.ToList();
+            return await Task.Run(() => matchedUsers) as IEnumerable<User>;
+        }
+
+        /// <summary>
         /// Delete user configuration details when user uninstalls a Bot
         /// </summary>
         /// <param name="userAADObjectId">The user's AAD object Id</param>

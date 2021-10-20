@@ -131,7 +131,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Controllers
         /// <param name="categoryDetails">The category details that needs to be created.</param>
         /// <param name="teamId">The LnD team Id.</param>
         /// <returns>Returns true in case if category created successfully. Else returns false.</returns>
-        [Authorize(PolicyNames.MustBeLnDTeamMemberPolicy)]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateCategoryAsync([FromBody] Category categoryDetails, string teamId)
         {

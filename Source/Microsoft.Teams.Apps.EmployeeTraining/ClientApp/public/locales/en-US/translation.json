@@ -91,7 +91,7 @@
   "endDateStep1": "Bitiş Tarihi",
   "teamsMeeting": "Teams toplantısı",
   "updateEventButton": "Etkinliği güncelle",
-  "deleteEvent": "Taslağı sil",
+  "deleteEvent": "Etkinliği sil",
   "deleteConfirmationText": "Etkinliği silmek istediğine emin misin?",
   "cancelledStatus": "Silindi",
   "editEvent": "Etkinliği düzenle",
@@ -143,5 +143,7 @@
   "orLabelForImageOrColor": "Veya",
   "unknownUserName": "Bilinmeyen kullanıcı",
   "yourTimeZone": "Saat dilimi",
-  "categoriesNotAvailableError": "Etkinlik oluşturmadan önce 'Kategorileri yönet' altından yeni kategori ekle."
+  "categoriesNotAvailableError": "Etkinlik oluşturmadan önce 'Kategorileri yönet' altından yeni kategori ekle.",
+  "eventDetails": "Etkinlik detayı"
+
 }

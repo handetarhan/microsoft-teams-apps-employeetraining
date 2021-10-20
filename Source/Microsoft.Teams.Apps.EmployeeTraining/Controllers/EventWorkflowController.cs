@@ -13,7 +13,8 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Localization;
     using Microsoft.Extensions.Logging;
-    using Microsoft.Teams.Apps.EmployeeTraining.Authentication;
+
+    // using Microsoft.Teams.Apps.EmployeeTraining.Authentication;
     using Microsoft.Teams.Apps.EmployeeTraining.Helpers;
     using Microsoft.Teams.Apps.EmployeeTraining.Models;
     using Microsoft.Teams.Apps.EmployeeTraining.Models.Enums;
@@ -24,7 +25,8 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(PolicyNames.MustBeLnDTeamMemberPolicy)]
+    /* [Authorize(PolicyNames.MustBeLnDTeamMemberPolicy)]*/
+    [Authorize]
     public class EventWorkflowController : BaseController
     {
         /// <summary>
@@ -524,6 +526,92 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Controllers
                     { "teamId", teamId },
                 });
                 this.logger.LogError(ex, $"Error occurred while deleting draft event {eventId} not found for team {teamId}");
+                throw;
+            }
+        }
+
+        // 12.10.2021 smarttek
+
+        /// <summary>
+        /// Delete event.
+        /// </summary>
+        /// <param name="teamId">Team Id for which event will be created.</param>
+        /// <param name="eventId">Event Id for event which needs to be deleted.</param>
+        /// <returns>Boolean indicating delete operation result.</returns>
+        [HttpDelete("delete-event")]
+        public async Task<IActionResult> DeleteEventAsync(string teamId, string eventId)
+        {
+            this.RecordEvent("Delete event- The HTTP DELETE call to delete event has been initiated", new Dictionary<string, string>
+            {
+                { "eventId", eventId },
+                { "teamId", teamId },
+            });
+
+            if (string.IsNullOrEmpty(teamId))
+            {
+                this.logger.LogError("Team Id is either null or empty");
+                this.RecordEvent("Delete event- The HTTP DELETE call to delete event has been failed", new Dictionary<string, string>
+                {
+                    { "eventId", eventId },
+                    { "teamId", teamId },
+                });
+                return this.BadRequest(new ErrorResponse { Message = "Team Id is either null or empty" });
+            }
+
+            if (string.IsNullOrEmpty(eventId))
+            {
+                this.logger.LogError("Event Id is null or empty");
+                this.RecordEvent("Delete event- The HTTP DELETE call to delete event has been failed", new Dictionary<string, string>
+                {
+                    { "eventId", eventId },
+                    { "teamId", teamId },
+                });
+                return this.BadRequest(new ErrorResponse { Message = "Event Id is null or empty" });
+            }
+
+            try
+            {
+                var deleteResult = await this.eventWorkflowHelper.DeleteDraftEventAsync(teamId, eventId);
+
+                if (deleteResult == null)
+                {
+                    this.RecordEvent("Delete event- The HTTP DELETE call to delete event has been failed", new Dictionary<string, string>
+                    {
+                        { "eventId", eventId },
+                        { "teamId", teamId },
+                    });
+                    this.logger.LogInformation($"Event {eventId} not found for team {teamId}");
+                    return this.NotFound(new ErrorResponse { Message = $"Event {eventId} not found for team {teamId}" });
+                }
+
+                if ((bool)deleteResult)
+                {
+                    this.RecordEvent("Delete event- The HTTP DELETE call to delete event has been succeeded", new Dictionary<string, string>
+                    {
+                        { "eventId", eventId },
+                        { "teamId", teamId },
+                    });
+                }
+                else
+                {
+                    this.RecordEvent("Delete event- The HTTP DELETE call to delete event has been failed", new Dictionary<string, string>
+                    {
+                        { "eventId", eventId },
+                        { "teamId", teamId },
+                    });
+                    this.logger.LogError($"Unable to delete event event {eventId} for team {teamId}");
+                }
+
+                return this.Ok(deleteResult);
+            }
+            catch (Exception ex)
+            {
+                this.RecordEvent("Delete event- The HTTP DELETE call to delete event has been failed", new Dictionary<string, string>
+                {
+                    { "eventId", eventId },
+                    { "teamId", teamId },
+                });
+                this.logger.LogError(ex, $"Error occurred while deleting  event {eventId} not found for team {teamId}");
                 throw;
             }
         }

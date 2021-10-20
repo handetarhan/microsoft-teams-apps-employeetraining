@@ -345,8 +345,15 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers
                 case EventType.LiveEvent:
                     return $"{HttpUtility.HtmlEncode(eventEntity.Description)}<br/><br/>{this.localizer.GetString("CalendarEventLiveEventURLText", $"<a href='{eventEntity.MeetingLink}'>{eventEntity.MeetingLink}</a>")}";
 
-                default:
-                    return HttpUtility.HtmlEncode(eventEntity.Description);
+                default: // 20.10.2021 smarttek
+                    if (!string.IsNullOrEmpty(eventEntity.MeetingLink))
+                    {
+                        return $"{HttpUtility.HtmlEncode(eventEntity.Description)}<br/><br/>{this.localizer.GetString("CalendarEventLiveEventURLText", $"<a href='{eventEntity.MeetingLink}'>{eventEntity.MeetingLink}</a>")}";
+                    }
+                    else
+                    {
+                        return HttpUtility.HtmlEncode(eventEntity.Description);
+                    }
             }
         }
     }

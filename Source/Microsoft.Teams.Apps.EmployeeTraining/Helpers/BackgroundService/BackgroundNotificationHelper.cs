@@ -110,7 +110,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers.BackgroundService
                         SearchString = "*",
                         PageCount = null,
                         UserObjectId = null,
-                        SearchScope = EventSearchType.DayBeforeReminder,
+                        SearchScope = EventSearchType.MorningReminder, /* 19.10.2021 smarttek*/
                     };
 
                     var dailyReminderEvents = await this.userEventSearchService.GetEventsAsync(reminderSearchParametersDto);
@@ -119,6 +119,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers.BackgroundService
                         await this.SendReminder(dailyReminderEvents, NotificationType.Daily);
                     }
 
+                    /* 12.10.2021 smarttek
                     if (DateTimeOffset.UtcNow.DayOfWeek == DayOfWeek.Monday)
                     {
                         reminderSearchParametersDto.SearchScope = EventSearchType.WeekBeforeReminder;
@@ -129,7 +130,8 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers.BackgroundService
                             await this.SendReminder(weeklyReminderEvents, NotificationType.Weekly);
                         }
                     }
-                }
+                    endof 12.10.2021 smarttek */
+                    }
                 catch (CloudException ex)
                 {
                     this.logger.LogError(ex, $"Error occurred while accessing search service: {ex.Message} at: {DateTimeOffset.UtcNow}");
@@ -145,7 +147,12 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers.BackgroundService
                     this.logger.LogError(ex, "Error occurred while running digest notification service.");
                 }
 
-                await Task.Delay(TimeSpan.FromDays(1), stoppingToken);
+                // 12.10.2021 smarttek
+                var timeSpan = DateTime.Today.AddDays(1).AddHours(7).Subtract(DateTime.Now);
+                await Task.Delay(timeSpan, stoppingToken);
+
+                // await Task.Delay(TimeSpan.FromDays(1), stoppingToken);
+                // endof 12.10.2021 smarttek
             }
         }
 

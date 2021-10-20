@@ -307,10 +307,19 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Models
             }
             else if (!(isUpdate && eventDetails.StartDate < DateTime.UtcNow))
             {
-                if (eventDetails.StartDate < DateTime.UtcNow.AddDays(1).Date)
+                // 20.10.2021 smarttek
+                // if (eventDetails.StartDate < DateTime.UtcNow.AddDays(1).Date)
+                if (eventDetails.StartDate < DateTime.UtcNow.Date)
                 {
                     validationMessages.Add(localizer.GetString("ErrorEventStartDateInvalid"));
                 }
+
+                if (eventDetails.StartDate == DateTime.UtcNow.Date && eventDetails.StartTime.GetValueOrDefault().TimeOfDay < DateTime.UtcNow.TimeOfDay)
+                {
+                    validationMessages.Add(localizer.GetString("ErrorEventStartDateInvalid"));
+                }
+
+                // endof 20.10.2021 smarttek
 
                 // Event time validation
                 if (eventDetails.StartTime == null)
@@ -344,6 +353,21 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Models
                     validationMessages.Add(localizer.GetString("ErrorMeetingLinkRequired"));
                 }
 
+                // 20.10.2021 smarttek
+                /*
+                var result = Uri.TryCreate(eventDetails.MeetingLink, UriKind.Absolute, out uriResult) &&
+                (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+
+                if (!result)
+                {
+                    validationMessages.Add(localizer.GetString("ErrorMeetingLinkInvalid"));
+                }
+                */
+            }
+
+            // 20.10.2021 smarttek
+            if (!string.IsNullOrEmpty(eventDetails.MeetingLink))
+            {
                 var result = Uri.TryCreate(eventDetails.MeetingLink, UriKind.Absolute, out uriResult) &&
                 (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
 

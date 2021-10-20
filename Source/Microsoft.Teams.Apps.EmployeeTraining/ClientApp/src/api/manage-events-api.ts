@@ -74,6 +74,18 @@ export const deleteDraftEventAsync = async (teamId: string, eventId: string) => 
     return await axios.delete(url, config);
 }
 
+/** 12.10.2021 smarttek
+ * 
+ * @param teamId The LnD team ID
+ * @param eventId The draft event ID that needs to be deleted
+ */
+export const deleteEventAsync = async (teamId: string, eventId: string) => {
+    let url = `${Constants.apiBaseURL}/EventWorkflow/delete-event`;
+    let config: AxiosRequestConfig = getAPIRequestConfigParams({ eventId: eventId, teamId: teamId });
+
+    return await axios.delete(url, config);
+}
+
 /**
  * Exports event details to CSV file
  * @param teamId The LnD team ID

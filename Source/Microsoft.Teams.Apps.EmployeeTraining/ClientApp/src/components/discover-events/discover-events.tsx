@@ -53,11 +53,12 @@ interface IDiscoverEventsState {
 interface IDiscoverEventsProps extends WithTranslation, IWithContext {
 }
 
+/** 11.10.2021 smarttek tabindexes changed */
 /** The tab index for 'Mandatory events' tab */
-const MandatoryEventsTabIndex: number = 0;
+const MandatoryEventsTabIndex: number = 1;
 
 /** The tab index for 'All events' */
-const AllEventsTabIndex: number = 1;
+const AllEventsTabIndex: number = 0;
 
 /** Renders all events for user created by LnD team */
 class DiscoverEvents extends React.Component<IDiscoverEventsProps, IDiscoverEventsState> {
@@ -82,7 +83,10 @@ class DiscoverEvents extends React.Component<IDiscoverEventsProps, IDiscoverEven
             hasMoreEvents: false,
             userEventsContainerKey: 0,
             isLoadingEvents: true,
-            activeTabIndex: MandatoryEventsTabIndex,
+            /** 11.10.2021 smarttek */
+            /**   activeTabIndex: MandatoryEventsTabIndex,*/
+            activeTabIndex: AllEventsTabIndex,
+        /** 11.10.2021 smarttek */
             isFilterOpen: false,
             searchText: "",
             filteredCategories: "",
@@ -106,9 +110,25 @@ class DiscoverEvents extends React.Component<IDiscoverEventsProps, IDiscoverEven
 
         clearMobileFilterLocalStorage();
 
-        let mandatoryEvents = this.getEventsAsync(EventSearchType.MandatoryEventsForUser);
+        /** 12.10.2021 smarttek */
         let allEvents = this.getEventsAsync(EventSearchType.AllPublicPrivateEventsForUser);
 
+        Promise.resolve(allEvents)
+            .then((results) => {
+                this.setTotalEventsCount(EventSearchType.AllPublicPrivateEventsForUser, results.length);
+            })
+            .finally(() => {
+                let mandatoryEvents = this.getEventsAsync(EventSearchType.MandatoryEventsForUser);
+                Promise.resolve(mandatoryEvents)
+                    .then((results) => {
+                        this.setTotalEventsCount(EventSearchType.MandatoryEventsForUser, results.length);
+                    })
+                    .finally(() => {
+                        this.getEvents();
+                    })
+            });
+
+        /*
         Promise.all([mandatoryEvents, allEvents])
             .then((results) => {
                 this.setTotalEventsCount(EventSearchType.MandatoryEventsForUser, results[0].length);
@@ -117,6 +137,8 @@ class DiscoverEvents extends React.Component<IDiscoverEventsProps, IDiscoverEven
             .finally(() => {
                 this.getEvents();
             });
+       */
+        /** eof 12.10.2021 smarttek */
     }
 
     screenResize = () => {
@@ -490,12 +512,12 @@ class DiscoverEvents extends React.Component<IDiscoverEventsProps, IDiscoverEven
         return (
             [
                 {
-                    key: "mandatory-user-events",
-                    content: `${this.localize("mandatoryEventsTab")} ${this.formatEventsCount(this.mandatoryEventsCount)}`
-                },
-                {
                     key: "all-user-events",
                     content: `${this.localize("allEventsTab")} ${this.formatEventsCount(this.allEventsCount)}`
+                },
+                {
+                    key: "mandatory-user-events",
+                    content: `${this.localize("mandatoryEventsTab")} ${this.formatEventsCount(this.mandatoryEventsCount)}`
                 },
             ]
         );
@@ -545,13 +567,15 @@ class DiscoverEvents extends React.Component<IDiscoverEventsProps, IDiscoverEven
         }
     }
 
-    /** Renders the desktop view */
+/** Renders the desktop view */
+/** 11.10.2021 smarttek defaultTabIndex={MandatoryEventsTabIndex} -- {AllEventsTabIndex}*/
+
     renderDesktopView = () => {
         return (
             <React.Fragment>
                 <Flex column>
                     <Flex space="between" vAlign="center">
-                        <TabMenu defaultTabIndex={MandatoryEventsTabIndex} activeTabIndex={this.state.activeTabIndex!} tabItems={this.renderTabMenuItems()} onTabIndexChange={this.onTabIndexChange} />
+                        <TabMenu defaultTabIndex={AllEventsTabIndex} activeTabIndex={this.state.activeTabIndex!} tabItems={this.renderTabMenuItems()} onTabIndexChange={this.onTabIndexChange} />
                         <Flex.Item push>
                             <Flex gap="gap.medium" vAlign="center">
                                 <MenuButton
@@ -595,7 +619,9 @@ class DiscoverEvents extends React.Component<IDiscoverEventsProps, IDiscoverEven
             <React.Fragment>
                 <Flex column>
                     <Flex space="between">
-                        <TabMenu defaultTabIndex={MandatoryEventsTabIndex} activeTabIndex={this.state.activeTabIndex!} tabItems={this.renderTabMenuItems()} onTabIndexChange={this.onTabIndexChange} />
+                    /** 11.10.2021 smarttek defaultTabIndex={MandatoryEventsTabIndex} -- {AllEventsTabIndex}*/
+                        <TabMenu defaultTabIndex={AllEventsTabIndex} activeTabIndex={this.state.activeTabIndex!} tabItems={this.renderTabMenuItems()} onTabIndexChange={this.onTabIndexChange} />
+                    /**end  11.10.2021 smarttek*/
                         <Flex.Item push>
                             <Flex gap="gap.medium" vAlign="center">
                                 <MenuButton

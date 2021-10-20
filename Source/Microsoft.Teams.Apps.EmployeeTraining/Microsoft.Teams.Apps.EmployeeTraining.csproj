@@ -10,7 +10,19 @@
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Properties\PublishProfiles\**" />
+    <Compile Remove="Properties\ServiceDependencies\**" />
+    <Content Remove="Properties\PublishProfiles\**" />
+    <Content Remove="Properties\ServiceDependencies\**" />
+    <EmbeddedResource Remove="Properties\PublishProfiles\**" />
+    <EmbeddedResource Remove="Properties\ServiceDependencies\**" />
+    <None Remove="Properties\PublishProfiles\**" />
+    <None Remove="Properties\ServiceDependencies\**" />
     <TypeScriptCompile Remove="ClientApp\node_modules\**" />
+    <TypeScriptCompile Remove="Properties\PublishProfiles\**" />
+    <TypeScriptCompile Remove="Properties\ServiceDependencies\**" />
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\**" />
+    <_WebToolingArtifacts Remove="Properties\ServiceDependencies\**" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.6" />
@@ -57,6 +69,7 @@
     <CodeAnalysisRuleSet>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), .gitignore))\Build\Analyzer.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\$(Configuration)\$(Platform)\$(AssemblyName).xml</DocumentationFile>
     <NoWin32Manifest>true</NoWin32Manifest>
+    <UserSecretsId>dec6be41-dc48-4b90-868f-45e3a2183530</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), .gitignore))\Build\stylecop.json" />

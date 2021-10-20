@@ -184,8 +184,11 @@ class CreateEventStep3 extends React.Component<ICreateEventsStep3Props, ICreateE
     }
 
     /** Renders the attendee URL for live event */
+
+    // 20.10.2021 smarttek
     renderAttendeeURL = () => {
-        if (this.props.eventPageState.eventDetails.type === EventType.LiveEvent) {
+       // if (this.props.eventPageState.eventDetails.type === EventType.LiveEvent)
+        if (this.props.eventPageState.eventDetails.meetingLink) {
             return (
                 <Flex design={{ marginTop: "2.67rem" }} vAlign="center" hAlign="start" column>
                     <Text content={this.localize("liveEventUrlStep1")} weight="semibold" />

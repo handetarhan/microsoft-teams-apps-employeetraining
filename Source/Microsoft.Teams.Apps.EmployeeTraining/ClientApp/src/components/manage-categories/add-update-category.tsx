@@ -109,6 +109,7 @@ class AddUpdateCategory extends React.Component<IAddCategoryProps, IAddCategoryS
             }
         }
         else {
+            debugger;
             response = await createCategoryAsync(this.teamId, this.state.category);
 
             if (response.status == ResponseStatus.OK && response.data === true) {

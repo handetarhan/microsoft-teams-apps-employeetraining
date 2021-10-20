@@ -579,7 +579,8 @@ class CreateEventStep1 extends React.Component<ICreateEventsStep1Props, ICreateE
         }
 
         let minDate = new Date();
-        minDate.setDate(minDate.getDate() + 1);
+        /*19.10.2021 smarttek*/
+        //minDate.setDate(minDate.getDate() + 1);
 
         return (
             <>
@@ -675,8 +676,9 @@ class CreateEventStep1 extends React.Component<ICreateEventsStep1Props, ICreateE
                             />
                         </Flex.Item>
                     </Flex>
+                    {/*19.10.2021 smarttek Teams condition added to if statement*/}
                     {
-                        this.state.eventDetails.type === EventType.LiveEvent &&
+                        (this.state.eventDetails.type === EventType.LiveEvent || this.state.eventDetails.type === EventType.Teams) &&
                         <>
                             <Flex className="margin-top" gap="gap.smaller">
                                 <Text className="form-label" content={this.localize("liveEventUrlStep1")} />

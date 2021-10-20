@@ -210,6 +210,27 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Repositories
             }
         }
 
+        // 19.10.2021 smarttek
+
+        /// <summary>
+        /// Get all data entities from the table storage in a partition.
+        /// </summary>
+        /// <returns>All data entities.</returns>
+        public async Task<IEnumerable<T>> GetAllNoFilterAsync()
+        {
+            try
+            {
+                var query = new TableQuery<T>();
+                var entities = await this.ExecuteQueryAsync(query);
+                return entities;
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
+
         /// <summary>
         /// Insert or merge a batch of entities in Azure table storage.
         /// A batch can contain up to 100 entities.

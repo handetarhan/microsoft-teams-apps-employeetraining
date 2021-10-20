@@ -27,6 +27,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Services.SearchService.Factory
                 { EventSearchType.RegisteredEventsForUser, new RegisteredEventsStrategy() },
                 { EventSearchType.CompletedEventsForUser, new CompletedEventsStrategy() },
                 { EventSearchType.DayBeforeReminder, new DayBeforeReminderStrategy() },
+                { EventSearchType.MorningReminder, new MorningReminderStrategy() },
                 { EventSearchType.WeekBeforeReminder, new WeekBeforeReminderStrategy() },
                 { EventSearchType.DraftEventsForTeam, new TeamDraftEventStrategy() },
                 { EventSearchType.ActiveEventsForTeam, new TeamActiveEventsStrategy() },

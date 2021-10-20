@@ -55,6 +55,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Services
             searchParametersDto = searchParametersDto ?? throw new ArgumentNullException(nameof(searchParametersDto), "Search parameter is null");
 
             if (searchParametersDto.SearchScope != EventSearchType.DayBeforeReminder && searchParametersDto.SearchScope != EventSearchType.WeekBeforeReminder
+                && searchParametersDto.SearchScope != EventSearchType.MorningReminder// 19.10.2021 smarttek
                 && string.IsNullOrEmpty(searchParametersDto.UserObjectId))
             {
                 return Enumerable.Empty<EventEntity>();
@@ -65,7 +66,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Services
             var searchParameters = this.InitializeSearchParameters(searchParametersDto);
             var events = await this.eventSearchService.GetEventsAsync(searchParametersDto.SearchString.EscapeSpecialCharacters(), searchParameters);
 
-            if (events.IsNullOrEmpty() || searchParametersDto.SearchScope == EventSearchType.DayBeforeReminder || searchParametersDto.SearchScope == EventSearchType.WeekBeforeReminder)
+            if (events.IsNullOrEmpty() || searchParametersDto.SearchScope == EventSearchType.DayBeforeReminder || searchParametersDto.SearchScope == EventSearchType.WeekBeforeReminder || searchParametersDto.SearchScope == EventSearchType.MorningReminder)
             {
                 return events;
             }

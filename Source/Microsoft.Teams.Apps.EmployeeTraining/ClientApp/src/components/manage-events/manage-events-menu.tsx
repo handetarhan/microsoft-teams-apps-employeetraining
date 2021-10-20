@@ -18,7 +18,9 @@ interface IManageEventsMenuProps extends WithTranslation {
     onExportDetails: (eventId: string, eventName: string) => void,
     onSendReminder: (eventId: string) => void,
     onCancelEvent: (eventId: string) => void,
-    onDeleteDraftEvent: (eventId: string, eventName: string) => void
+    onDeleteDraftEvent: (eventId: string, eventName: string) => void,
+    // 12.10.2021 smarttek
+    onDeleteEvent: (eventId: string, eventName: string) => void
 }
 
 /**
@@ -78,6 +80,24 @@ const ManageEventsMenu: React.FunctionComponent<IManageEventsMenuProps> = props 
             icon: <ArrowDownIcon />,
             content: localize("exportRegistrationDetails"),
             onClick: () => props.onExportDetails(props.eventDetails.eventId, props.eventDetails.name)
+        },
+        {
+            kind: "divider"
+        },
+        {
+            icon: <CloseIcon outline />,
+            content: localize("deleteEvent"),
+            onClick: () => props.onDeleteEvent(props.eventDetails.eventId, props.eventDetails.name)
+        }
+    ]
+
+   /** 12.10.2021 smarttek*/
+   /** Gets menu items for completed events */
+    const getCancelledEventsMenu: ShorthandCollection<MenuItemProps, MenuShorthandKinds> = [
+        {
+            icon: <CloseIcon outline />,
+            content: localize("deleteEvent"),
+            onClick: () => props.onDeleteEvent(props.eventDetails.eventId, props.eventDetails.name)
         }
     ]
 
@@ -86,6 +106,10 @@ const ManageEventsMenu: React.FunctionComponent<IManageEventsMenuProps> = props 
         switch (props.eventDetails.status) {
             case EventStatus.Draft:
                 return getDraftEventsMenu;
+            /* 12.10.2021 smarttek*/
+            case EventStatus.Cancelled:
+                return getCancelledEventsMenu;
+        /* endof 12.10.2021 smarttek*/
 
             case EventStatus.Active:
                 if (new Date() < moment.utc(props.eventDetails.endDate).local().toDate()) {
