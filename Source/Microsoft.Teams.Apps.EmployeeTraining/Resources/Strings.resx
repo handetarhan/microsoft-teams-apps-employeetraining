@@ -405,4 +405,8 @@
     <value>Meeting link is required</value>
     <comment>Error message sent by API when event meeting link is blank</comment>
   </data>
+  <data name="EventDetailsButton" xml:space="preserve">
+    <value>Etkinlik detayı</value>
+    <comment>Event details button in notification message</comment>
+  </data>
 </root>

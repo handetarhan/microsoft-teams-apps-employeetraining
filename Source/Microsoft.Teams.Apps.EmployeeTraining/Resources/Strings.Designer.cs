@@ -142,7 +142,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category.
+        ///   Looks up a localized string similar to Kategori.
         /// </summary>
         public static string Category {
             get {
@@ -421,6 +421,15 @@ namespace Microsoft.Teams.Apps.EmployeeTraining {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Etkinlik detayı.
+        /// </summary>
+        public static string EventDetailsButton {
+            get {
+                return ResourceManager.GetString("EventDetailsButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Event name.
         /// </summary>
         public static string EventName {
@@ -574,7 +583,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ready to get started? Select {0} below:.
+        ///   Looks up a localized string similar to Daha fazlası için: {0} butonuna tıkla:.
         /// </summary>
         public static string WelcomeCardPersonalContentFooter {
             get {
@@ -583,7 +592,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Discover.
+        ///   Looks up a localized string similar to Keşfet.
         /// </summary>
         public static string WelcomeCardPersonalDiscoverButtonText {
             get {
@@ -592,7 +601,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Looking forward to discover and participate in new events? I am here to help you discover new events, participate in them &amp; keep track of their occurance. So, lets get started!.
+        ///   Looks up a localized string similar to Etkinliklerin yeni buluşma noktası Eventzone’a hoş geldiniz!.
         /// </summary>
         public static string WelcomeCardPersonalIntro {
             get {
@@ -601,7 +610,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Discover &amp; explore all events..
+        ///   Looks up a localized string similar to - Yaklaşan etkinlikleri buradan takip edebilirsiniz..
         /// </summary>
         public static string WelcomeCardPersonalPoint1 {
             get {
@@ -610,7 +619,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Register to the events you like..
+        ///   Looks up a localized string similar to - Etkinliklere kayıt olabilir, takviminize ekleyebilirsiniz..
         /// </summary>
         public static string WelcomeCardPersonalPoint2 {
             get {
@@ -619,7 +628,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Keep a track of all your completed events..
+        ///   Looks up a localized string similar to - Etkinlik yaklaştığında bildirim alabilirsiniz..
         /// </summary>
         public static string WelcomeCardPersonalPoint3 {
             get {
@@ -628,7 +637,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Get notified about all your activities &amp; receive reminders of your upcoming registered events..
+        ///   Looks up a localized string similar to - Etkinlik geçmişinize göz atabilirsiniz..
         /// </summary>
         public static string WelcomeCardPersonalPoint4 {
             get {
@@ -637,7 +646,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ready to get started? Select {0} below:.
+        ///   Looks up a localized string similar to Daha fazlası için: {0} .
         /// </summary>
         public static string WelcomeCardTeamContentFooter {
             get {
@@ -700,7 +709,7 @@ namespace Microsoft.Teams.Apps.EmployeeTraining {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome!.
+        ///   Looks up a localized string similar to Hoş Geldiniz!.
         /// </summary>
         public static string WelcomeCardTitle {
             get {

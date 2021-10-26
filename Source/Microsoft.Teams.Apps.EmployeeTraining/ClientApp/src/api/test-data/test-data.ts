@@ -50,6 +50,7 @@ export default class TestData {
             registeredAttendees: "",
             selectedUserOrGroupListJSON: "",
             autoRegisteredAttendees: "",
+            sendNotification: false
         },
         selectedCategory: undefined,
         selectedEvent: undefined,
@@ -94,6 +95,7 @@ export default class TestData {
             registeredAttendees: "",
             selectedUserOrGroupListJSON: "",
             autoRegisteredAttendees: "",
+            sendNotification: false
         },
         selectedCategory: undefined,
         selectedEvent: undefined,
@@ -134,5 +136,6 @@ export default class TestData {
         registeredAttendees: "",
         selectedUserOrGroupListJSON: "",
         autoRegisteredAttendees: "",
+        sendNotification: false
     }
 }

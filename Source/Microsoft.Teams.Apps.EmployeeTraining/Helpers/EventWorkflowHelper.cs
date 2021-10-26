@@ -252,7 +252,8 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers
                     await this.SendAutoregisteredNotificationAsync(eventToUpsert, eventToUpsert.AutoRegisteredAttendees.Split(";").ToList());
                 }
 
-                if (!eventToUpsert.IsAutoRegister)
+                // 25.10.2021 smarttek
+                if (eventToUpsert.Audience == 1 && eventToUpsert.SendNotification)
                 {
                     await this.SendEventCreationNotificationAllUsers(eventToUpsert, createdByName);
                 }
@@ -699,6 +700,9 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers
             destinationEventEntity.UpdatedBy = sourceEventEntity.UpdatedBy;
             destinationEventEntity.UpdatedOn = DateTime.UtcNow;
             destinationEventEntity.Venue = sourceEventEntity.Venue;
+
+            // 25.10.2021 smarttek
+            destinationEventEntity.SendNotification = sourceEventEntity.SendNotification;
 
             // If user is creating new event, initialize properties with default value.
             if (!isEdit)

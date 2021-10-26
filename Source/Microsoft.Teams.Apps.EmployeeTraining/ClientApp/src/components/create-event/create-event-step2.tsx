@@ -215,6 +215,15 @@ class CreateEventStep2 extends React.Component<ICreateEventsStep2Props, ICreateE
     }
 
     /**
+    * Event handler for auto-registering the mandatory users for an event
+    */
+    onNotificationToggleChange = () => {
+        this.setState((prevState: ICreateEventsStep2State) => ({
+            eventDetails: { ...prevState.eventDetails, sendNotification: !this.state.eventDetails.sendNotification }
+        }));
+    }
+
+    /**
     * Event handler for saving event as a draft
     */
     saveEventAsDraft = async () => {
@@ -296,6 +305,12 @@ class CreateEventStep2 extends React.Component<ICreateEventsStep2Props, ICreateE
                             </Flex.Item>
                         </Flex>
                         {this.renderMembers()}
+                    </>}
+                    {/* 25.10.2021 smarttek*/}
+                    {this.state.eventDetails.audience === EventAudience.Public && <>
+                        <Flex gap="gap.smaller" className="input-label-margin-between">
+                            <Checkbox onChange={() => this.onNotificationToggleChange()} checked={this.state.eventDetails.sendNotification} label={this.localize("sendNotificationCheckboxLabelStep2")} data-testid="auto_toggle-notification" />
+                        </Flex>
                     </>}
                 </div>
                 <Flex gap="gap.smaller" className="button-footer" vAlign="center">

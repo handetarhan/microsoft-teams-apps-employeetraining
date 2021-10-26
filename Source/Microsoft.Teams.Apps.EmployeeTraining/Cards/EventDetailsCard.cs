@@ -449,58 +449,6 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Cards
                             },
                         },
                    },
-                   new AdaptiveColumnSet
-                   {
-                        Spacing = AdaptiveSpacing.Small,
-                        Columns = new List<AdaptiveColumn>
-                        {
-                            new AdaptiveColumn
-                            {
-                                Width = "100px",
-                                Items = new List<AdaptiveElement>
-                                {
-                                    new AdaptiveTextBlock
-                                    {
-                                        Text = $"**{localizer.GetString("NumberOfRegistrations")}:** ",
-                                        Wrap = true,
-                                        Weight = AdaptiveTextWeight.Bolder,
-                                        Size = AdaptiveTextSize.Small,
-                                    },
-                                },
-                            },
-                            new AdaptiveColumn
-                            {
-                                Spacing = AdaptiveSpacing.None,
-                                Items = new List<AdaptiveElement>
-                                {
-                                    new AdaptiveTextBlock
-                                    {
-                                        Text = eventEntity.RegisteredAttendeesCount.ToString(CultureInfo.InvariantCulture),
-                                        Wrap = true,
-                                        Size = AdaptiveTextSize.Small,
-                                    },
-                                },
-                            },
-                        },
-                   },
-                   new AdaptiveColumnSet
-                   {
-                        Columns = new List<AdaptiveColumn>
-                        {
-                            new AdaptiveColumn
-                            {
-                                Items = new List<AdaptiveElement>
-                                {
-                                    new AdaptiveTextBlock
-                                    {
-                                        Text = $"{localizer.GetString("CreatedByLabel")} **{createdByName}**",
-                                        Wrap = true,
-                                        Size = AdaptiveTextSize.Small,
-                                    },
-                                },
-                            },
-                        },
-                   },
                    new AdaptiveImage
                    {
                         IsVisible = eventEntity.Audience == (int)EventAudience.Private,
@@ -515,13 +463,13 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Cards
                 {
                      new AdaptiveSubmitAction
                      {
-                         Title = localizer.GetString("eventDetails"),
+                         Title = localizer.GetString("EventDetailsButton"),
                          Data = new AdaptiveSubmitActionData
                          {
                             MsTeams = new CardAction
                             {
                                 Type = "task/fetch",
-                                Text = localizer.GetString("eventDetails"),
+                                Text = localizer.GetString("EventDetailsButton"),
                             },
                             Command = BotCommands.RegisterForEvent,
                             EventId = eventEntity.EventId,

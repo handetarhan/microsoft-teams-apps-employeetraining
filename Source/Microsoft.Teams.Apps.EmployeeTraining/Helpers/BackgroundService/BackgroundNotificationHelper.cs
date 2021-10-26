@@ -148,7 +148,8 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Helpers.BackgroundService
                 }
 
                 // 12.10.2021 smarttek
-                var timeSpan = DateTime.Today.AddDays(1).AddHours(7).Subtract(DateTime.Now);
+                var timeSpan = DateTime.Today.AddDays(1).AddHours(8).AddMinutes(30).Subtract(DateTime.Now);
+
                 await Task.Delay(timeSpan, stoppingToken);
 
                 // await Task.Delay(TimeSpan.FromDays(1), stoppingToken);

@@ -48,7 +48,8 @@ export const getEventsAsync = async (
             registeredAttendees: "26",
             updatedOn: new Date("2020-09-29T07:55:00.585825Z"),
             selectedUserOrGroupListJSON: "[{\"displayName\":\"All Employees\",\"email\":\"Employees@M365x002616.OnMicrosoft.com\",\"id\":\"1\",\"isGroup\":true,\"isMandatory\":true}]",
-            autoRegisteredAttendees: "user1;user2"
+            autoRegisteredAttendees: "user1;user2",
+            sendNotification: false
         },
         {
             eventId: "2",
@@ -82,7 +83,8 @@ export const getEventsAsync = async (
             registeredAttendees: "26",
             updatedOn: new Date("2020-09-29T07:55:00.585825Z"),
             selectedUserOrGroupListJSON: "[{\"displayName\":\"All Employees\",\"email\":\"Employees@M365x002616.OnMicrosoft.com\",\"id\":\"5a501b90-9fae-4e3c-b7bb-3f14a9e6fb84\",\"isGroup\":true,\"isMandatory\":true}]",
-            autoRegisteredAttendees: "1"
+            autoRegisteredAttendees: "1",
+            sendNotification: false
         },
         {
             eventId: "3",
@@ -116,7 +118,8 @@ export const getEventsAsync = async (
             registeredAttendees: "6",
             updatedOn: new Date("2020-09-29T07:55:00.585825Z"),
             selectedUserOrGroupListJSON: "[{\"displayName\":\"All Employees\",\"email\":\"Employees@M365x002616.OnMicrosoft.com\",\"id\":\"5a501b90-9fae-4e3c-b7bb-3f14a9e6fb84\",\"isGroup\":true,\"isMandatory\":true}]",
-            autoRegisteredAttendees: "user4;user1"
+            autoRegisteredAttendees: "user4;user1",
+            sendNotification: false
         },
         {
             eventId: "4",
@@ -150,7 +153,8 @@ export const getEventsAsync = async (
             registeredAttendees: "26",
             updatedOn: new Date("2020-09-29T07:55:00.585825Z"),
             selectedUserOrGroupListJSON: "[{\"displayName\":\"All Employees\",\"email\":\"Employees@M365x002616.OnMicrosoft.com\",\"id\":\"5a501b90-9fae-4e3c-b7bb-3f14a9e6fb84\",\"isGroup\":true,\"isMandatory\":true}]",
-            autoRegisteredAttendees: ""
+            autoRegisteredAttendees: "",
+            sendNotification: false
         },
         {
             eventId: "5",
@@ -184,7 +188,8 @@ export const getEventsAsync = async (
             registeredAttendees: "7",
             updatedOn: new Date("2020-09-29T07:55:00.585825Z"),
             selectedUserOrGroupListJSON: "[{\"displayName\":\"All Employees\",\"email\":\"Employees@M365x002616.OnMicrosoft.com\",\"id\":\"5a501b90-9fae-4e3c-b7bb-3f14a9e6fb84\",\"isGroup\":true,\"isMandatory\":true}]",
-            autoRegisteredAttendees: "user4;user3"
+            autoRegisteredAttendees: "user4;user3",
+            sendNotification: false
         }
     ]
     let searchEvents: IEvent[] = events;

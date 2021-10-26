@@ -17,10 +17,12 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Services.SearchService.Strategie
         /// <inheritdoc/>
         public string GenerateFilterQuery(SearchParametersDto searchParametersDto)
         {
-            var eventDate = DateTime.UtcNow.Date;
+            var startDate = DateTime.UtcNow.Date;
+            var endDate = DateTime.UtcNow.Date.AddDays(1).Date;
 
             return $"{nameof(EventEntity.Status)} eq {(int)EventStatus.Active} and " +
-                $"{nameof(EventEntity.StartDate)} eq {eventDate.ToString("O", CultureInfo.InvariantCulture)} and " +
+                $"{nameof(EventEntity.StartDate)} ge {startDate.ToString("O", CultureInfo.InvariantCulture)} and " +
+                $"{nameof(EventEntity.StartDate)} lt {endDate.ToString("O", CultureInfo.InvariantCulture)} and " +
                 $"{nameof(EventEntity.RegisteredAttendeesCount)} gt 0";
         }
     }

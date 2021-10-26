@@ -352,3 +352,4 @@ MigrationBackup/
 /Source/Microsoft.Teams.Apps.EmployeeTraining/.config/dotnet-tools.json
 /Source/Microsoft.Teams.Apps.EmployeeTraining/Properties/ServiceDependencies/eventplanningrnv1 - Web Deploy
 /Source/Microsoft.Teams.Apps.EmployeeTraining/Properties/ServiceDependencies/eventplanningrnv1 - Web Deploy1
+/Source/Microsoft.Teams.Apps.EmployeeTraining/ClientApp/build

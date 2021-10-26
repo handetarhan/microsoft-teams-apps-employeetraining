@@ -99,6 +99,13 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Models
         /// </summary>
         public bool IsAutoRegister { get; set; }
 
+        // 25.10.2021 smarttek
+
+        /// <summary>
+        /// Gets or sets a value indicating whether a notification will be send to all users.
+        /// </summary>
+        public bool SendNotification { get; set; }
+
         /// <summary>
         /// Gets or sets the event type. Ref: <see cref="EventType"/>
         /// </summary>

@@ -45,7 +45,9 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Tests.Providers
                     Name = "Mandaotory Training Event",
                     NumberOfOccurrences=1,
                     OptionalAttendees= "",
-                    Status = 1
+                    Status = 1,
+                // 25.10.2021 smarttek
+                    SendNotification=false
                 },
                 new EventEntity
                 {
@@ -70,7 +72,9 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Tests.Providers
                     Name = "Mandaotory Training Event 1",
                     NumberOfOccurrences=1,
                     OptionalAttendees= "",
-                    Status = 3
+                    Status = 3,
+                // 25.10.2021 smarttek
+                    SendNotification=false
                 },
                 new EventEntity
                 {
@@ -97,7 +101,9 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Tests.Providers
                     Name = "Mandaotory Training Event",
                     NumberOfOccurrences=1,
                     OptionalAttendees= "",
-                    Status = 2
+                    Status = 2,
+                // 25.10.2021 smarttek
+                    SendNotification=false
                 },
                 new EventEntity
                 {
@@ -129,7 +135,9 @@ namespace Microsoft.Teams.Apps.EmployeeTraining.Tests.Providers
                     Type = (int) EventType.Teams,
                     RegisteredAttendeesCount = 2,
                     Venue = "Teams meeting",
-                    TeamCardActivityId = "teanCardActicityId"
+                    TeamCardActivityId = "teanCardActicityId",
+                // 25.10.2021 smarttek
+                    SendNotification=false
                 }
             };
         }

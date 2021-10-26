@@ -5,7 +5,7 @@
 import * as React from "react";
 import * as microsoftTeams from "@microsoft/teams-js";
 import { WithTranslation, withTranslation } from "react-i18next";
-import { Text, Flex, Image, Button, Label, EyeSlashIcon, ArrowLeftIcon, Layout,Divider } from '@fluentui/react-northstar'
+import { Text, Flex, Image, Button, Label, EyeSlashIcon, ArrowLeftIcon, Layout, Divider, Checkbox } from '@fluentui/react-northstar'
 import { EyeIcon} from '@fluentui/react-icons-northstar';
 import { TFunction } from "i18next";
 import { Icon } from 'office-ui-fabric-react';
@@ -243,6 +243,14 @@ class CreateEventStep3 extends React.Component<ICreateEventsStep3Props, ICreateE
                             <Text content={this.localize("registeredParticipants")} weight="semibold" />
                             <Text content={this.state.registeredAttendeesCount} />
                         </Flex>
+                        {/* 25.10.2021 smarttek*/}
+                        {this.props.eventPageState.eventDetails.audience === EventAudience.Public && <>
+                            <Flex column>
+                                <Text content={this.localize("sendNotificationCheckboxLabelStep2")} weight="semibold" />
+                                <Checkbox  checked={this.props.eventPageState.eventDetails.sendNotification} />
+                        </Flex>
+                    </>}
+
                     </Flex>
                 </div>
                 <Flex gap="gap.smaller" className="button-footer" vAlign="center">

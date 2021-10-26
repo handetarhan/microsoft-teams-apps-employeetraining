@@ -40,5 +40,6 @@ export interface IEvent {
     updatedOn?: Date,
     selectedUserOrGroupListJSON?: string,
     autoRegisteredAttendees: string,
-    canLoggedInUserRegister?: boolean
+    canLoggedInUserRegister?: boolean,
+    sendNotification:boolean  //25.10.2021 smarttek
 }

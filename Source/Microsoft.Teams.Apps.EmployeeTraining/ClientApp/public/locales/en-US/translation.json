@@ -65,7 +65,7 @@
   "eventDescriptionPlaceholder": "Etkinliği kısaca açıkla",
   "startDateStep1": "Başlangıç tarihi",
   "startTimeStep1": "Başlangıç saati",
-  "endTimeStep1": "Bitiş tarihi",
+  "endTimeStep1": "Bitiş saati",
   "maxParticipantsStep1": "Maksimum katılımcı sayısı",
   "audienceTypeStep2": "Kimler katılabilir",
   "mandatoryAllButtonStep2": "Herkes için mecburi",
@@ -144,6 +144,6 @@
   "unknownUserName": "Bilinmeyen kullanıcı",
   "yourTimeZone": "Saat dilimi",
   "categoriesNotAvailableError": "Etkinlik oluşturmadan önce 'Kategorileri yönet' altından yeni kategori ekle.",
-  "eventDetails": "Etkinlik detayı"
-
+  "eventDetailsButton": "Etkinlik detayı",
+  "sendNotificationCheckboxLabelStep2": "Tüm kullanıcılara bildirim gönder"
 }

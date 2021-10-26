@@ -93,6 +93,8 @@ class CreateEventWrapper extends React.Component<ICreateEventProps, ICreateEvent
                 registeredAttendees: "",
                 selectedUserOrGroupListJSON: "",
                 autoRegisteredAttendees: "",
+                //25.10.2021 SMARTTEK
+                sendNotification: false
             },
             selectedCategory: undefined,
             selectedEvent: undefined,
